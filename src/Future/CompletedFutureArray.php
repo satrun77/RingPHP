@@ -1,6 +1,8 @@
 <?php
 namespace GuzzleHttp\Ring\Future;
 
+use ArrayIterator;
+
 /**
  * Represents a future array that has been completed successfully.
  */
@@ -16,7 +18,7 @@ class CompletedFutureArray extends CompletedFutureValue implements FutureArrayIn
         return isset($this->result[$offset]);
     }
 
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->result[$offset];
     }
@@ -31,12 +33,12 @@ class CompletedFutureArray extends CompletedFutureValue implements FutureArrayIn
         unset($this->result[$offset]);
     }
 
-    public function count()
+    public function count(): int
     {
         return count($this->result);
     }
 
-    public function getIterator()
+    public function getIterator(): ArrayIterator
     {
         return new \ArrayIterator($this->result);
     }
